@@ -13,10 +13,10 @@ export function sendHtml(filePath, res) {
 
         res.writeHead(200, {'Content-Type': 'text/html'});
         res.write(htmlContent);
-        // res.end();
+        res.end();
     });
-
 }
+
 export function sendImage(url, res){
     fs.readFile(url, (e, img)=>{
         if (e) {
@@ -29,6 +29,7 @@ export function sendImage(url, res){
         res.end();
     })
 }
+
 export function sendCss(filePath, res) {
     fs.readFile(filePath, 'utf8', (e, htmlContent) => {
         if (e) {
@@ -42,3 +43,12 @@ export function sendCss(filePath, res) {
     });
 }
 
+export function isImageRequest(url){
+    const parsedUrl = new URL(url);
+    return parsedUrl.pathname.endsWith('.png') || parsedUrl.pathname.endsWith('.jpg') || parsedUrl.pathname.endsWith('.jpeg') || parsedUrl.pathname.endsWith('.gif');
+}
+
+export function isCssRequest(url){
+    const parsedUrl = new URL(url);
+    return parsedUrl.pathname.endsWith('.css');
+}

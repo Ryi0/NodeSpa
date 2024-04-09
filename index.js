@@ -9,17 +9,18 @@ import {sendHtml, sendImage} from "./js/FileHandler.js";
 // sendHtml(require("./js/FileHandler"));
 
 
-
-
-
-
 http.createServer(function (req, res) {
-    sendHtml("src/testaxasd.html", res)
-    //
-    // sendImage("assets/img/brewingCoffee.png", res);
-    // sendHtml("src/testaxasd.html", res);
-    // res.write('Hello World!'); //write a response to the client
-    // res.end(); //end the response
+    // Serve the HTML file for the root path or "/index.html"
+    if (req.url === "/" || req.url === "/index.html") {
+        sendHtml("src/testaxasd.html", res);
+    }
 
-}).listen(8080); //the server object listens on port 8080
-
+    else if (req.url === "/assets/img/brewingCoffee.png") {
+        // Serve the image file when its path is requested
+        sendImage("assets/img/brewingCoffee.png", res);
+    } else {
+        // Handle 404 Not Found for other paths
+        res.writeHead(404, {'Content-Type': 'text/plain'});
+        res.end('404 Not Found');
+    }
+}).listen(8080); // The server listens on port 8080
