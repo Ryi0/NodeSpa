@@ -52,3 +52,30 @@ export function isCssRequest(url){
     const parsedUrl = new URL(url);
     return parsedUrl.pathname.endsWith('.css');
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+export const FileHandler = {
+    sendHtml: sendHtml,
+    sendImage: sendImage,
+    sendCss: sendCss,
+    isImageRequest: isImageRequest,
+    isCssRequest: isCssRequest
+}
