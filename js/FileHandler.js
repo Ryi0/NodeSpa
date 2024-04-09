@@ -16,7 +16,26 @@ export function sendHtml(filePath, res) {
         res.end();
     });
 }
-
+export function sendJs(filePath, res) {
+    const resolvedPath = path.resolve(filePath);
+    fs.readFile(resolvedPath, (err, jsContent) => {
+        if (err) {
+            if (err.code === 'ENOENT') {
+                // File not found
+                res.writeHead(404, {'Content-Type': 'text/plain'});
+                res.end('JavaScript file not found');
+            } else {
+                // Some other error
+                res.writeHead(500, {'Content-Type': 'text/plain'});
+                res.end('Error reading JavaScript file');
+            }
+            return;
+        }
+        // Successfully read the file, send it with the JavaScript content type
+        res.writeHead(200, {'Content-Type': 'application/javascript'});
+        res.end(jsContent);
+    });
+}
 export function sendImage(url, res){
     fs.readFile(url, (e, img)=>{
         if (e) {
