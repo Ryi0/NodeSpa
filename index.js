@@ -12,11 +12,12 @@ import {sendHtml, sendImage} from "./js/FileHandler.js";
 
 
 
-http.createServer(function (req, res) {
-    // sendHtml("src/testaxasd.html", res)
 
-    sendImage("assets/img/brewingCoffee.png", res);
-    sendHtml("src/testaxasd.html", res);
+http.createServer(function (req, res) {
+    sendHtml("src/testaxasd.html", res)
+    //
+    // sendImage("assets/img/brewingCoffee.png", res);
+    // sendHtml("src/testaxasd.html", res);
     // res.write('Hello World!'); //write a response to the client
     // res.end(); //end the response
 

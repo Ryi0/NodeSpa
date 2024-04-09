@@ -10,10 +10,12 @@ export function sendHtml(filePath, res) {
             res.end('such a bad, bad, file');
             return;
         }
-        // res.writeHead(200, {'Content-Type': 'text/html'});
+
+        res.writeHead(200, {'Content-Type': 'text/html'});
         res.write(htmlContent);
         // res.end();
     });
+
 }
 export function sendImage(url, res){
     fs.readFile(url, (e, img)=>{
@@ -22,7 +24,7 @@ export function sendImage(url, res){
             res.end('such a bad, bad, file. No img');
             return;
         }
-        // res.writeHead(200, {'Content-Type': 'image/png'});
+        res.writeHead(200, {'Content-Type': 'image/png'});
         res.write(img);
         res.end();
     })
