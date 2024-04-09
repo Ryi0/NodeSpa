@@ -3,7 +3,7 @@
 // const http= require('http');
 import http from "http";
 
-import {sendHtml} from "./js/FileHandler.js";
+import {sendHtml, sendImage} from "./js/FileHandler.js";
 
 // const {sendHtml} = require("./js/FileHandler");
 // sendHtml(require("./js/FileHandler"));
@@ -14,7 +14,9 @@ import {sendHtml} from "./js/FileHandler.js";
 
 http.createServer(function (req, res) {
     // sendHtml("src/testaxasd.html", res)
-    sendHtml("src/testaxasd.html", res)
+
+    sendImage("assets/img/brewingCoffee.png", res);
+    sendHtml("src/testaxasd.html", res);
     // res.write('Hello World!'); //write a response to the client
     // res.end(); //end the response
 
